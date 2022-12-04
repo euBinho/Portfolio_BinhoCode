@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero Mágico</title>
+</head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+<body>
+
+    <div class="container"><div id="title123"><h1 id="info">Número Mágico</h1></div></div>
+    <div class="container"><div id="info4"><h2 id="info2">
+        Selecione um nivel para jogar PvE
+    </h2></div></div>
+    <button onclick="facil()" id="idfacil">
+        Fácil
+    </button>
+    <button onclick="medio()" id="idmedio">
+        Médio
+    </button>
+    <button onclick="dificil()" id="iddificil">
+        Díficil
+    </button>
+    <div class="container">
+    <h2 id="info3">Multiplayer</h2></div>
+    <div><button onclick="pvp()" id="idpvp">
+        PvP
+    </button></div>
+    <div class="container">
+        <div id="divfacil">
+            <h4 id='msnfacil' style='display: none;'><strong id="str1">Fácil</strong> : Chute um numero de 0 a 10!</h4>
+        </div>
+    </div>
+    <div class="container">
+        <div id="divmedio">
+            <h4 id='msnmedio' style='display: none;'><strong id="str2">Médio</strong> : Chute um numero de 0 a 100!</h4>
+        </div>
+    </div>
+    <div class="container">
+        <div id="divdificil">
+            <h4 id='msndificil' style='display: none;'><strong id="str3">díficil</strong> : Chute um numero de 0 a 1000!</h4>
+        </div>
+    </div>
+    <div class="container">
+        <div id="info5">
+            <h4 id="idnot" style="display: none;">
+            Escolha um numero para seu oponente acertar
+            </h4>
+        </div>
+    </div>
+    <div>
+        <input type="password" id="inppvp" placeholder="Digite..." style="display: none;">
+    </div>
+    <div id="divnot1">
+        <h4 id="idnot1" style="display: none;">Agora tente acertar o numero!</h4>
+    </div>
+    <div>
+        <input type="number" id="inpentrada" placeholder="Digite..." style="display: none;">
+    </div>
+    <div>
+        <button onclick="proximo()" id="idproximo" style="display: none;">
+            <strong id="stro">
+                Próximo
+            </strong>
+        </button>
+    </div>
+    <div>
+        <button onclick="proximo1()" id="idproximo1" style="display: none;">
+            <strong id="stro">
+                Próximo
+            </strong>
+        </button>
+    </div>
+    <div>
+        <button onclick="proxpvp()" id="proxpvp" style="display: none;">
+            <strong id="stro">
+                Proximo
+            </strong>
+        </button>
+    </div>
+    <div class="container">
+    <div id="divsaida">
+        
+        
+    </div></div>
+    <div class="container">
+    <div id="divsaida1">
+
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>

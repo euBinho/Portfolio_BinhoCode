@@ -1,0 +1,53 @@
+body {
+    background-image: url(baralho_wallpaper.png);
+    background-size: 113%;
+    background-color: #49090b; 
+}
+
+div {
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px;
+    gap: 150px 100px;
+    grid-auto-flow: row;
+    margin-top: 7rem;
+}
+
+button {
+    background-image: url(baralho1.jpg);
+    background-size: 100%;
+    border-radius: 10px;
+    height: 200px;
+    width: 150px;
+    color: #49090b;
+    font-size: 100px;
+    font-style: inherit;
+    background-color: rgb(68, 13, 13);
+}
+
+#reset {
+    color: #acacac;
+    font-size: 25px;
+    height: 65px;
+    width: 198px;
+    background: rgba(0, 0, 0, 0.89);
+    background-size: cover;
+    border-color: aliceblue;
+}
+#reset:hover{
+    background: #000;
+    color: #49090b;
+    border-color: #808080;
+}
+
+#vencedor {
+    height: 40px;
+    width: 110px;
+    background-color: rgb(25, 81, 85);
+}

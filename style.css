@@ -41,7 +41,7 @@ html{
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
-    color: #fff;
+    color: #153f55;
 }
 .navbar .menu li{
     list-style: none;
@@ -58,7 +58,7 @@ html{
     color: #3695c9;
 }
 .navbar.sticky .menu li a:hover{
-    color: #fff;
+    color: #153f55;
 }
 /*  Home   inicio  */
 .home{
@@ -92,7 +92,7 @@ html{
 .home .home-content a{
     display: inline-block;
     background: #3695c9;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.849);
     font-size: 25px;
     padding: 12px 36px;
     margin-top: 20px;
@@ -102,6 +102,7 @@ html{
 .home .home-content a:hover{
     color: #3695c9;
     background: none;
+    border-color: #3695c9;
 }
 
 /*  Menu  Mobile  */
@@ -420,7 +421,7 @@ footer span a:hover{
         height: 100vh;
         left: -100%;
         top: 0;
-        background: #111;
+        background: #3695c9;
         padding-top: 80px;
         text-align: center;
         transition: all 0.3s ease;
@@ -435,6 +436,9 @@ footer span a:hover{
         display: inline-block;
         margin: 20px 0;
         font-size: 25px;
+    }
+    .about .about-content .right .text{
+        font-size: 20px;
     }
     .home .home-content .text-2{
         font-size: 70px;

@@ -496,3 +496,8 @@ footer span a:hover{
         font-size: 27px;
     }
 }
+@media (max-width: 434px){
+    .about .about-content .right .text{
+        font-size: 15px;
+    }
+}

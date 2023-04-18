@@ -437,6 +437,9 @@ footer span a:hover{
         margin: 20px 0;
         font-size: 25px;
     }
+    .navbar .menu li a:hover{
+        color: #153f55;
+    }
     .about .about-content .right .text{
         font-size: 20px;
     }

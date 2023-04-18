@@ -500,4 +500,10 @@ footer span a:hover{
     .about .about-content .right .text{
         font-size: 15px;
     }
+    .home .home-content .text-3{
+        font-size: 18px;
+    }
+    section .title{
+        padding-bottom: 37px;
+    }
 }

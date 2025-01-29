@@ -1,116 +1,157 @@
-alert(`Jogo da Velha/Carta:\n\nX = ♥\nO = ♣\n\nComece jogando em um numero`) //Começo do Jogo
-        var proximaJogada = "♥"
-        var cont = 0
-        var x = 0
-      
+// Função para solicitar e validar os nomes dos jogadores
+function solicitarNome(jogadorPadrao) {
+  let nome;
+  do {
+    nome = prompt(`Informe o nome do ${jogadorPadrao}:`).trim();
+    if (!nome) {
+      alert("⚠️ Por favor, insira um nome válido (não apenas espaços).");
+    }
+  } while (!nome);
+  return nome;
+}
 
-        function verificarVencedor() //verifica se tem vencedor 
-        {
-            var b1 = document.getElementById('botao1').innerText
-            var b2 = document.getElementById('botao2').innerText
-            var b3 = document.getElementById('botao3').innerText
-            var b4 = document.getElementById('botao4').innerText
-            var b5 = document.getElementById('botao5').innerText
-            var b6 = document.getElementById('botao6').innerText
-            var b7 = document.getElementById('botao7').innerText
-            var b8 = document.getElementById('botao8').innerText
-            var b9 = document.getElementById('botao9').innerText
-            if (b1 == b2 && b2 == b3) {
-                alert(`"${b1}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b4 == b5 && b5 == b6) {
-                alert(`"${b4}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b7 == b8 && b8 == b9) {
-                alert(`"${b7}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b1 == b4 && b4 == b7) {
-                alert(`"${b1}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b2 == b5 && b5 == b8) {
-                alert(`"${b2}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b3 == b6 && b6 == b9) {
-                alert(`"${b3}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b1 == b5 && b5 == b9) {
-                alert(`"${b1}" GANHOU`)
-                x=1
-                reset()
-            }
-            if (b3 == b5 && b5 == b7) {
-                alert(`"${b3}" GANHOU`)
-                x=1
-                reset()
-            }
-        }
-        
+const jogador1 = solicitarNome("jogador (X)");
+let jogador2 = prompt(
+  `Informe o nome do Jogador (O)\n(ou digite 'bot' para jogar contra o computador):`
+).trim();
 
-        function clica(botao) //click em cada butão
-        {
-            cont++
-            var identificador = 'botao' + botao
-            console.log(identificador)
-            document.getElementById(identificador).innerText = proximaJogada
-            {
-                document.getElementById(identificador).innerText = proximaJogada
-                    if (proximaJogada == `♥`) {
-                        document.getElementById(identificador).disabled = true
-                        proximaJogada = '♠'
-                    } 
-                    else 
-                    {
-                        document.getElementById(identificador).disabled = true
-                        proximaJogada = '♥'
-                    } 
-                    verificarVencedor()
-                    
-                    if (cont == 9 && x == 0) {
-                        alert("Empate!!!")
-                        reset()
-                    }
-                    
-                
-            }
-            
-        }
+if (!jogador2 || jogador2.toLowerCase() === "bot") {
+  jogador2 = "Máquina 🤖";
+}
 
-        function reset() //reiciar
-        {
-            document.getElementById("botao1").disabled = false
-            document.getElementById("botao2").disabled = false
-            document.getElementById("botao3").disabled = false
-            document.getElementById("botao4").disabled = false
-            document.getElementById("botao5").disabled = false
-            document.getElementById("botao6").disabled = false
-            document.getElementById("botao7").disabled = false
-            document.getElementById("botao8").disabled = false
-            document.getElementById("botao9").disabled = false
-            
-            
+let proximaJogada = "X";
+let jogadas = 0;
+let placar = { [jogador1]: 0, [jogador2]: 0 };
 
-            document.getElementById("botao1").innerHTML = `1`
-            document.getElementById("botao2").innerHTML = `2`
-            document.getElementById("botao3").innerHTML = `3`
-            document.getElementById("botao4").innerHTML = `4`
-            document.getElementById("botao5").innerHTML = `5`
-            document.getElementById("botao6").innerHTML = `6`
-            document.getElementById("botao7").innerHTML = `7`
-            document.getElementById("botao8").innerHTML = `8`
-            document.getElementById("botao9").innerHTML = `9`
-            cont = 0
-            x = 0
+const combinacoesVitoria = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9], // Linhas
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9], // Colunas
+  [1, 5, 9],
+  [3, 5, 7], // Diagonais
+];
 
-        }
+const botoes = Array.from({ length: 9 }, (_, i) =>
+  document.getElementById(`botao${i + 1}`)
+);
+
+document.getElementById("reset").addEventListener("click", reset);
+botoes.forEach((botao) => botao.addEventListener("click", clica));
+
+// Atualiza o placar inicial
+atualizarPlacar();
+
+function clica(event) {
+  const botao = event.target;
+  realizarJogada(botao);
+
+  if (jogador2 === "Máquina 🤖" && proximaJogada === "O") {
+    setTimeout(jogadaMaquina, 500); // Delay para a jogada da máquina
+  }
+}
+
+function realizarJogada(botao) {
+  botao.innerText = proximaJogada;
+  botao.disabled = true;
+  jogadas++;
+
+  if (verificarVencedor()) {
+    const vencedor = proximaJogada === "X" ? jogador1 : jogador2;
+    setMensagem(`${vencedor} venceu! 🎉`);
+    placar[vencedor]++;
+    atualizarPlacar();
+    desabilitarTodosBotoes();
+  } else if (jogadas === 9) {
+    setMensagem("Empate! 🤝");
+  }
+
+  proximaJogada = proximaJogada === "X" ? "O" : "X";
+}
+
+function jogadaMaquina() {
+  // 1. Verifica se há jogadas vencedoras
+  let melhorJogada = encontrarMelhorJogada("O");
+  if (melhorJogada !== null) {
+    realizarJogada(botoes[melhorJogada]);
+    return;
+  }
+
+  // 2. Bloqueia vitória do jogador humano
+  melhorJogada = encontrarMelhorJogada("X");
+  if (melhorJogada !== null) {
+    realizarJogada(botoes[melhorJogada]);
+    return;
+  }
+
+  // 3. Prioriza o centro
+  if (!botoes[4].disabled) {
+    realizarJogada(botoes[4]);
+    return;
+  }
+
+  // 4. Prioriza os cantos
+  const cantos = [0, 2, 6, 8].filter((i) => !botoes[i].disabled);
+  if (cantos.length > 0) {
+    realizarJogada(botoes[cantos[Math.floor(Math.random() * cantos.length)]]);
+    return;
+  }
+
+  // 5. Escolhe aleatoriamente entre laterais
+  const laterais = [1, 3, 5, 7].filter((i) => !botoes[i].disabled);
+  if (laterais.length > 0) {
+    realizarJogada(
+      botoes[laterais[Math.floor(Math.random() * laterais.length)]]
+    );
+  }
+}
+
+function encontrarMelhorJogada(simbolo) {
+  for (let i = 0; i < botoes.length; i++) {
+    if (!botoes[i].disabled) {
+      botoes[i].innerText = simbolo;
+      const vitoria = verificarVencedor();
+      botoes[i].innerText = ""; // Limpa temporariamente
+      if (vitoria) {
+        return i;
+      }
+    }
+  }
+  return null;
+}
+
+function verificarVencedor() {
+  return combinacoesVitoria.some((combinacao) => {
+    const [a, b, c] = combinacao.map((i) => botoes[i - 1].innerText);
+    return a !== "" && a === b && b === c;
+  });
+}
+
+function desabilitarTodosBotoes() {
+  botoes.forEach((botao) => (botao.disabled = true));
+}
+
+function reset() {
+  jogadas = 0;
+  proximaJogada = "X";
+  setMensagem("");
+  botoes.forEach((botao) => {
+    botao.innerText = "";
+    botao.disabled = false;
+  });
+}
+
+function setMensagem(texto) {
+  document.getElementById("mensagem").innerText = texto;
+}
+
+function atualizarPlacar() {
+  document.getElementById(
+    "jogador1-score"
+  ).innerText = `${jogador1}: ${placar[jogador1]} vitórias`;
+  document.getElementById(
+    "jogador2-score"
+  ).innerText = `${jogador2}: ${placar[jogador2]} vitórias`;
+}

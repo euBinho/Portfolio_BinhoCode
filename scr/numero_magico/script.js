@@ -1,116 +1,144 @@
-var numero
-        var entrada = document.getElementById("inpentrada")
-        var cont = Number(0)
-        function pvp()
-        {
-            document.getElementById("idnot").style="display: inline;"
-            document.getElementById("inppvp").style="display: inline;"
-            document.getElementById("idproximo1").style="display: inline;"
-            document.getElementById("inppvp").style="display: inline;"
-            document.getElementById("info3").style="display: none;"
-            document.getElementById("info2").style="display: none;"
-            reset()
-        }
-        function proximo1()
-        {
-            document.getElementById('idnot1').style="display: inline;"
-            document.getElementById('proxpvp').style="display: inline;"
-            document.getElementById("idnot").style="display: none;"
-            document.getElementById("inppvp").style="display: none;"
-            document.getElementById("idproximo1").style="display: none;"
-            document.getElementById('inpentrada').style="display: inline;"
-            
+let numeroSecreto;
+let contadorTentativas = 0;
+const entrada = document.getElementById("inpentrada");
+const inppvp = document.getElementById("inppvp");
+const gameInterface = document.getElementById("game-interface");
+const gameInstruction = document.getElementById("game-instruction");
+const divSaida = document.getElementById("divsaida");
+const divSaida1 = document.getElementById("divsaida1");
 
-        }
-        function proxpvp()
-        {
-            cont++
-            var entrada = document.getElementById("inpentrada")
-            // entrada=Number(entrada)
-            var pvp1 = document.getElementById("inppvp")
-            console.log(entrada.value)
-            if(entrada.value==pvp1.value)
-            {
-                alert(`Parabéns\nVocê acertou o numero do seu oponente na ${cont}° tentativa!`)
-                location.reload()
-            }
-            else if(entrada.value>pvp1.value)
-            {
-                document.getElementById("divsaida").innerHTML=`Seu numero é muito alto...<br>Tente outro numero!`
-                
-            }
-            else if(entrada.value<pvp1.value)
-            {
-                document.getElementById("divsaida").innerHTML=`Seu numero é muito baixo...<br>Tente outro numero!`
-            }
-            document.getElementById("divsaida1").innerText=`Tentativa N°${cont} errada!`
-        }
-        function facil()
-        {
-            numero = Math.floor(Math.random()*10)+1
-            console.log(numero)
-            document.getElementById('msnfacil').style='display: inline;'
-            document.getElementById('inpentrada').style="display: inline;"
-            
-            document.getElementById('idproximo').style="display: inline;"
-            document.getElementById("info3").style="display: none;"
-            document.getElementById("info2").style="display: none;"
-            reset()
-        }
-        
-        function medio()
-        {
-            numero = Math.floor(Math.random()*100)+1
-            document.getElementById('msnmedio').style='display: inline;'
-            console.log(numero)
-            document.getElementById('inpentrada').style="display: inline;"
-            
-            document.getElementById('idproximo').style="display: inline;"
-            document.getElementById("info3").style="display: none;"
-            document.getElementById("info2").style="display: none;"
-            reset()
-        }
+// Adiciona os event listeners uma única vez
+document
+  .getElementById("idproximo")
+  .addEventListener("click", verificarPalpite);
+document.getElementById("proxpvp").addEventListener("click", proxpvp);
+document.getElementById("idreset").addEventListener("click", resetGame);
 
-        function dificil()
-        {
-            numero = Math.floor(Math.random()*1000)+1
-            console.log(numero)
-            document.getElementById('msndificil').style='display: inline;'
-            document.getElementById('inpentrada').style="display: inline;"
-            
-            document.getElementById('idproximo').style="display: inline;"
-            document.getElementById("info3").style="display: none;"
-            document.getElementById("info2").style="display: none;"
-            reset()
-        }
-        function rec()
-        {
-            location.reload()
-        }
-        function proximo()
-        {
-            cont++
-            console.log(cont)
-            if(entrada.value==numero)
-            {
-                alert(`Parabéns, vocè acertou o Numero Mágico na ${cont}° tentativa`)
-                rec()
-                // document.getElementById('divsaida').innerHTML=`Parabéns, vocè acertou o Numero Mágico na ${cont}° tentativa`
-            }
-            else if(entrada.value>numero)
-            {
-                document.getElementById('divsaida').innerHTML=`Seu numero é muito alto...<br>Tente outro numero menor!<br><label>Tentativa N°: ${cont}</label>`   
-            }
-            else if(entrada.value<numero)
-            {
-                document.getElementById('divsaida').innerHTML=`Seu numero é muito baixo...<br>Tente outro numero maior!`
-            }
-            document.getElementById("divsaida1").innerText=`Tentativa N°${cont} errada!`
-        }
-        function reset()
-        {
-            document.getElementById('idfacil').style='display: none;'
-            document.getElementById('idmedio').style='display: none;'
-            document.getElementById('iddificil').style='display: none;'
-            document.getElementById('idpvp').style='display: none'
-        }
+function resetInterface() {
+  entrada.style.display = "none";
+  inppvp.style.display = "none";
+  document.getElementById("idproximo").style.display = "none";
+  document.getElementById("idproximo1").style.display = "none";
+  document.getElementById("proxpvp").style.display = "none";
+  document.getElementById("idreset").style.display = "none";
+  divSaida.innerHTML = "";
+  divSaida1.textContent = "";
+  entrada.disabled = false; // Reabilita o campo de entrada
+}
+
+function iniciarJogo(modo, max) {
+  numeroSecreto = Math.floor(Math.random() * max) + 1;
+  console.log(`Número mágico (${modo}): ${numeroSecreto}`); // Registra no console
+  gameInstruction.textContent = `Modo ${modo}: Chute um número de 0 a ${max}!`;
+  entrada.style.display = "inline";
+  document.getElementById("idproximo").style.display = "inline";
+  document.getElementById("idreset").style.display = "inline";
+  gameInterface.style.display = "block";
+  resetUI();
+}
+
+function facil() {
+  resetInterface();
+  iniciarJogo("Fácil", 10);
+}
+
+function medio() {
+  resetInterface();
+  iniciarJogo("Médio", 100);
+}
+
+function dificil() {
+  resetInterface();
+  iniciarJogo("Difícil", 1000);
+}
+
+function pvp() {
+  resetInterface();
+  gameInstruction.textContent = "Defina o número secreto para o seu oponente!";
+  inppvp.style.display = "inline";
+  document.getElementById("idproximo1").style.display = "inline";
+  document.getElementById("idreset").style.display = "inline";
+  gameInterface.style.display = "block";
+  resetUI();
+}
+
+function proximo1() {
+  gameInstruction.textContent = "Agora, tente acertar o número!";
+  inppvp.style.display = "none";
+  document.getElementById("idproximo1").style.display = "none";
+  entrada.style.display = "inline";
+  document.getElementById("proxpvp").style.display = "inline";
+}
+
+function verificarPalpite() {
+  const palpite = parseInt(entrada.value);
+
+  if (isNaN(palpite)) {
+    divSaida.innerHTML = "Por favor, insira um número válido!";
+    return;
+  }
+
+  contadorTentativas++; // Incrementa o contador de tentativas
+  divSaida1.textContent = `Tentativas: ${contadorTentativas}`;
+
+  if (palpite === numeroSecreto) {
+    divSaida.innerHTML = `🎉 Parabéns! Você acertou em ${contadorTentativas} tentativas! 🎉`;
+    entrada.disabled = true; // Desabilita o campo de entrada
+    document.getElementById("idproximo").style.display = "none"; // Oculta o botão "Verificar"
+  } else if (palpite > numeroSecreto) {
+    divSaida.innerHTML = "Seu palpite é muito alto. Tente um número menor!";
+    aplicarAnimacaoFeedback();
+  } else {
+    divSaida.innerHTML = "Seu palpite é muito baixo. Tente um número maior!";
+    aplicarAnimacaoFeedback();
+  }
+
+  entrada.value = ""; // Limpa o campo de entrada
+  entrada.focus(); // Devolve o foco ao campo de entrada
+}
+
+function proxpvp() {
+  const palpite = parseInt(entrada.value);
+  const numeroPvp = parseInt(inppvp.value);
+
+  if (isNaN(palpite)) {
+    divSaida.innerHTML = "Por favor, insira um número válido!";
+    return;
+  }
+
+  contadorTentativas++; // Incrementa o contador de tentativas
+  divSaida1.textContent = `Tentativas: ${contadorTentativas}`;
+
+  if (palpite === numeroPvp) {
+    divSaida.innerHTML = `🎉 Parabéns! Você acertou em ${contadorTentativas} tentativas! 🎉`;
+    entrada.disabled = true; // Desabilita o campo de entrada
+    document.getElementById("proxpvp").style.display = "none"; // Oculta o botão "Verificar"
+  } else if (palpite > numeroPvp) {
+    divSaida.innerHTML = "Seu palpite é muito alto. Tente um número menor!";
+    aplicarAnimacaoFeedback();
+  } else {
+    divSaida.innerHTML = "Seu palpite é muito baixo. Tente um número maior!";
+    aplicarAnimacaoFeedback();
+  }
+
+  entrada.value = ""; // Limpa o campo de entrada
+  entrada.focus(); // Devolve o foco ao campo de entrada
+}
+
+function aplicarAnimacaoFeedback() {
+  divSaida.style.animation = "none"; // Reseta a animação
+  void divSaida.offsetWidth; // Força o reflow
+  divSaida.style.animation = "blink 0.5s ease-in-out"; // Aplica a animação
+}
+
+function resetUI() {
+  entrada.value = "";
+  inppvp.value = "";
+  divSaida.innerHTML = "";
+  divSaida1.textContent = "";
+  contadorTentativas = 0;
+}
+
+function resetGame() {
+  location.reload();
+}

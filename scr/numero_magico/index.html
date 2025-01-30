@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Mágico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Número Mágico</h1>
+            <p class="subtitle">Desafie sua intuição e descubra o número secreto!</p>
+        </header>
+
+        <main class="main-content">
+            <section class="mode-selection">
+                <h2 class="section-title">Escolha o Modo de Jogo</h2>
+                <div class="buttons">
+                    <button class="btn-futuristic" id="idfacil" onclick="facil()">Fácil (0-10)</button>
+                    <button class="btn-futuristic" id="idmedio" onclick="medio()">Médio (0-100)</button>
+                    <button class="btn-futuristic" id="iddificil" onclick="dificil()">Difícil (0-1000)</button>
+                    <button class="btn-futuristic" id="idpvp" onclick="pvp()">PvP</button>
+                </div>
+            </section>
+
+            <section class="game-interface" id="game-interface" style="display: none;">
+                <h2 class="section-title" id="game-instruction"></h2>
+                <input type="number" id="inpentrada" class="input-futuristic" placeholder="Digite seu palpite..." style="display: none;">
+                <input type="password" id="inppvp" class="input-futuristic" placeholder="Defina o número secreto..." style="display: none;">
+                <div class="buttons">
+                    <button class="btn-futuristic" id="idproximo" style="display: none;">Verificar</button>
+                    <button class="btn-futuristic" id="idproximo1" onclick="proximo1()" style="display: none;">Próximo</button>
+                    <button class="btn-futuristic" id="proxpvp" style="display: none;">Verificar</button>
+                    <button class="btn-futuristic" id="idreset" onclick="resetGame()" style="display: none;">Reiniciar</button>
+                </div>
+                <div class="feedback" id="divsaida"></div>
+                <div class="attempts" id="divsaida1"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

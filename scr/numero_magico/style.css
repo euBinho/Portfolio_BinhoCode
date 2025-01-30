@@ -1,196 +1,130 @@
-body
-    {
-        font-family: 'Kanit', sans-serif;
-        text-align: center;
-        background-repeat: no-repeat;
-        background-size:  100%;
-        background-image: url("https://i.pinimg.com/originals/74/43/a3/7443a31b6a19e5630b94a6538ff9bdd1.gif");
-        /* background-image: url("https://wallpaperaccess.com/full/1477273.jpg"); */
-        
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
     }
-    input{
-        text-align: center;
+    50% {
+        opacity: 0.5;
     }
-    #inpentrada{
-        border-radius: 20px;
-        width: 140px;
-        height: 25px;
-        color: crimson;
-        border-color: crimson;
-        font-size: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
+}
 
-    }
-    #inppvp{
-        border-radius: 20px;
-        width: 140px;
-        height: 25px;
-        color: crimson;
-        border-color: crimson;
-        font-size: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    }
-    h1{
-        color: rgb(195, 21, 21);
-        font-size: 40px;
-        margin: 0 10px 0 10px;
-    }
-    button{
-        margin: 15px;
-        font-family: 'Kanit', sans-serif;
-        background-color: cornflowerblue;
-        border-radius: 15px;
-        font-size: 30px;
-    }
-    #idpvp{
-        margin: 12px;
-        border-color: crimson;
-        background-color: rgba(255, 255, 255, 0.5);
-        color: crimson;
-    }
-    #idfacil{
-        cursor: pointer;
-        margin: 12px;
-        border-color: rgb(0, 181, 0);
-        background-color: rgba(38, 165, 12, 0.5);
-        color: rgb(0, 0, 0);
-    }
-    #idmedio{
-        cursor: pointer;
-        margin: 12px;
-        border-color: rgb(234, 199, 0);
-        background-color: rgba(208, 208, 13, 0.5);
-        color: rgb(0, 0, 0);
-    }
-    
-    #iddificil{
-        cursor: pointer;
-        margin: 12px;
-        border-color: rgb(208, 87, 22);
-        background-color: rgba(208, 87, 22, 0.5);
-        color: rgb(0, 0, 0);
-    }
-    h4{
-        width: 100%;
-        height: 100%;
-        display: inline-block;
-        margin: 5px 10px 5px 10px;
-    }
-    div{
-        margin: 15px;
-    }
-    #title123{      
-        background-color: rgba(116, 116, 116, 0.5);
-        border-radius: 20px;
-        
-    }
-    #info3{
-        background-color: rgba(116, 116, 116, 0.5);
-        max-width: 200px;
-        border-radius: 20px;
-        padding: 0 10px 0 10px;
-    }
-    #info4{
-        background-color: rgba(116, 116, 116, 0.5);
-        max-width: 400px;
-        border-radius: 20px;
-    }
-    #info2{
-        margin: 2px 10px 2px 10px;
-    }
-    #divfacil{
-        font-size: 20px;
-        max-width: 320px;
-        background-color: rgba(33, 131, 13, 0.748);
-        border-radius: 20px;
-    }
-    #str1{
-        color: rgb(54, 250, 15);
-    }
-    #idproximo{
-        cursor: pointer;
-        font-size: 25px;
-        margin: 12px;
-        border-color: crimson;
-        background-color: rgba(107, 107, 107, 0.618);
-        color: rgb(0, 0, 0);
-    }
-    #idproximo1{
-        cursor: pointer;
-        font-size: 25px;
-        margin: 12px;
-        border-color: crimson;
-        background-color: rgba(107, 107, 107, 0.618);
-        color: rgb(0, 0, 0);
-    }
-    #proxpvp{
-        cursor: pointer;
-        font-size: 25px;
-        margin: 12px;
-        border-color: crimson;
-        background-color: rgba(107, 107, 107, 0.618);
-        color: rgb(0, 0, 0);
-    }
-    #divsaida{
-        background-color: rgba(109, 109, 109, 0.563);
-        max-width: 400px;
-        border-radius: 20px;
-        font-size: 20px;
-    }
-    #divsaida1{
-        background-color: rgba(220, 20, 60, 0.5);
-        max-width: 400px;
-        border-radius: 20px;
-        font-size: 20px;
-        font-size: 25px;
-        color:black;
-    }
-    #divdificil{
-        font-size: 20px;
-        background-color: rgba(208, 87, 22, 0.5);
-        max-width: 350px;
-        border-radius: 20px;
-    }
-   #divmedio{
-    font-size: 20px;
-    background-color: rgba(208, 208, 13, 0.5);
-    max-width: 350px;
-    border-radius: 20px;
-   }
-   #str2{
-       color: rgb(255, 255, 0);
-   }
-   #str3{
-       color: rgb(255, 89, 0);
-   }
-   #info5{
-    font-size: 25px;
-    background-color: rgba(116, 116, 116, 0.5);
-    max-width: 400px;
-    border-radius: 20px;
-   }
-   #divnot1{
-    font-size: 25px;
-    background-color: rgba(116, 116, 116, 0.5);
-    max-width: 400px;
-    margin-left: 35%;
-    border-radius: 20px;
-   }
-   #divsaida{
-       font-size: 30px;
-       color:black;
-   }
-   #idpvp{
-    cursor: pointer;
-   }
-   .container{
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0a0a0a;
+    color: #00ffcc;
     display: flex;
     justify-content: center;
-   }
-   #divsaida{
-    padding: 0 10px 0 10px
-   }
-   #divsaida1{
-    padding: 0 10px 0 10px
-   }
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(10, 10, 10, 0.8), rgba(0, 0, 0, 1));
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+}
+
+.header .title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    margin-bottom: 10px;
+}
+
+.header .subtitle {
+    font-size: 1.2rem;
+    color: #00ffcc;
+    opacity: 0.8;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #00ffcc;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-futuristic {
+    background: linear-gradient(45deg, #00ffcc, #0099ff);
+    border: none;
+    color: #0a0a0a;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+.btn-futuristic:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+}
+
+.input-futuristic {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ffcc;
+    color: #00ffcc;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.input-futuristic:focus {
+    outline: none;
+    border-color: #0099ff;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+}
+
+.feedback {
+    font-size: 1.2rem;
+    color: #00ffcc;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #00ffcc;
+    animation: blink 0.5s ease-in-out;
+}
+
+.attempts {
+    font-size: 1rem;
+    color: #ff0066;
+    margin-top: 10px;
+    text-shadow: 0 0 5px #ff0066;
+}
+
+.game-interface {
+    margin-top: 30px;
+}
